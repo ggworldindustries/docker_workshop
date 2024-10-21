@@ -1,19 +1,17 @@
-
-version: "3.7"
 services:
 
   django-app:
 
-    container_name: container-ya-app
-    image: image-itaunda-container
+    container_name: gideon-app-container
+    image: gideon-app-image
     build:
       context: .
     ports:
       - "8000:8000"
     networks:
-      - network-yangu
+      - gideon-network
     volumes:
-      - my-own-volume:/app
+      - gideon-volume:/app
 
 
   alpine:
@@ -23,15 +21,16 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - network-yangu
+      - gideon-network
     
  
 
 networks:
-  network-yangu:
+  gideon-network:
     driver: bridge
 
 volumes:
-  my-own-volume:
+  gideon-volume:
+    driver: local
   
   
